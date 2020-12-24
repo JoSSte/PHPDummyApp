@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  bootstrap="src/vendor/autoload.php" 
+  verbose="true" 
+  colors="true" 
+  backupStaticAttributes="false" 
+  backupGlobals="true" 
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage includeUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+    <exclude>
+      <file>src/bootstrap.php</file>
+    </exclude>
+    <report>
+      <html outputDirectory="build/coverage"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="UnitTests">
+      <directory suffix="Test.php">tests/unit/</directory>
+    </testsuite>
+  </testsuites>
+  <logging>
+    <!-- <log type="coverage-clover" target="build/logs/clover.xml"/> -->
+    <!-- <log type="coverage-crap4j" target="build/logs/crap4j.xml"/> -->
+    <junit outputFile="build/logs/junit.xml"/>
+  </logging>
+</phpunit>
