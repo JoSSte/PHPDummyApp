@@ -102,8 +102,8 @@ pipeline {
                 sloccountPublish encoding: '', pattern: ''
                 // warnings-ng https://github.com/jenkinsci/warnings-ng-plugin/blob/master/doc/Documentation.md
                 recordIssues enabledForFailure: true, tool: cpd(pattern: 'build/logs/phpcpd.xml')
-                recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/logs/phpmd_code.xml')
-                recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/logs/phpmd_tests.xml')
+                //recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/logs/phpmd_code.xml')
+                //recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/logs/phpmd_tests.xml')
             }
         }
         stage ('Deploy') {
