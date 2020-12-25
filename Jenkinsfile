@@ -62,9 +62,9 @@ pipeline {
                 stage ("Mess Detection"){
                     steps{
                         echo "Running mess detection on code"
-                        //sh "./src/vendor/bin/phpmd src xml phpmd_ruleset.xml --reportfile=\"./build/logs/phpmd_code.xml\" --exclude=\"src/vendor,build\" --ignore-violations-on-exit --suffixes=\"php\""
+                        sh "./src/vendor/bin/phpmd src xml phpmd_ruleset.xml --reportfile ./build/logs/phpmd_code.xml --exclude vendor,build/* --ignore-violations-on-exit --suffixes php"
                         echo "Running mess detection on tests"
-                        //sh "./src/vendor/bin/phpmd tests xml phpmd_ruleset.xml --reportfile=\"./build/logs/phpmd_tests.xml\" --ignore-violations-on-exit --suffixes=\"php\""
+                        sh "./src/vendor/bin/phpmd tests xml phpmd_ruleset.xml --reportfile ./build/logs/phpmd_tests.xml --ignore-violations-on-exit --suffixes php"
                     }
                 }
                 stage ("Testing"){
