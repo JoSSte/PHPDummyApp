@@ -8,10 +8,9 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-
+      - uses: actions/checkout@v1
       - name: Setup PHP with xdebug & tools
         uses: shivammathur/setup-php@v2
-        uses: actions/checkout@v1
         with:
           php-version: '7.4'
           extensions: xdebug
