@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.0']
+        php-versions: ['7.3'] # , '7.4', '8.0'
     steps:
       - uses: actions/checkout@v1
       - name: Setup PHP with xdebug & tools
@@ -19,7 +19,7 @@ jobs:
         env:
           fail-fast: true
       - name: Install dependencies
-        run: composer install --prefer-dist
+        run: composer install --prefer-dist --working-dir=./src
       - name: Run Psalm
         run: psalm --output-format=github
       - name: Test
