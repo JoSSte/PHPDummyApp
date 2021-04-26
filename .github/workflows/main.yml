@@ -15,7 +15,7 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           extensions: xdebug
           tools: php-cs-fixer, phpunit, composer:v2, psalm
-          coverage: xdebug2
+          coverage: xdebug
         env:
           fail-fast: true
       - name: Install dependencies
