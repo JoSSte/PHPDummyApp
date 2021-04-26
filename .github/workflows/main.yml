@@ -18,10 +18,10 @@ jobs:
           coverage: xdebug2
         env:
           fail-fast: true
-      - name: Run Psalm
-        run: psalm --output-format=github
       - name: Install dependencies
         run: composer install --prefer-dist
+      - name: Run Psalm
+        run: psalm --output-format=github
       - name: Test
         run: |
           phpunit --configuration phpunit-quick.xml
@@ -29,9 +29,6 @@ jobs:
     needs: build
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
       - name: Push Build to Releases
         uses: ncipollo/release-action@v1
