@@ -6,13 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        php-versions: ['7.3', '7.4', '8.0']
     steps:
       - uses: actions/checkout@v1
       - name: Setup PHP with xdebug & tools
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php-versions }}
           extensions: xdebug
           tools: php-cs-fixer, phpunit, composer:v2, psalm
           coverage: xdebug2
