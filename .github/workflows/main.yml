@@ -1,0 +1,41 @@
+# https://github.com/marketplace/actions/setup-php-action
+on: push
+name: Build Angular
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup PHP with xdebug & tools
+        with:
+        uses: shivammathur/setup-php@v2
+          php-version: '7.4'
+          extensions: xdebug
+          tools: php-cs-fixer, phpunit, composer:v2
+          coverage: xdebug2
+        env:
+          fail-fast: true
+      - name: Run Psalm
+        run: psalm --output-format=github
+      - name: Install dependencies
+        run: composer install --prefer-dist
+      - name: Test
+        run: |
+          ./src/vendor/bin/phpunit --configuration phpunit-quick.xml
+  deploy:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Push Build to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/angular-githubaction/*"
+          token: ${{ secrets.TOKEN }}
