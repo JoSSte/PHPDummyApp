@@ -1,6 +1,6 @@
 # https://github.com/marketplace/actions/setup-php-action
 on: push
-name: Build Angular
+name: Test PHP application
 jobs:
   build:
     runs-on: ubuntu-latest
