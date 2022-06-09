@@ -17,7 +17,7 @@ node{
 }
 
 pipeline {
-    agent php7
+    agent { label 'php7' }
     environment {
         SOURCE_DIR="${WORKSPACE}/src"
         BACKUP_FNAME="/tmp/BACKUP-${SITE_NAME}-${(new java.text.SimpleDateFormat('yyyy-MM-dd-HHmm')).format((new Date()))}.tar.gz"
