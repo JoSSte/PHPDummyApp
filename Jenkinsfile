@@ -50,7 +50,7 @@ pipeline {
                 stage ("Count LOC"){
                     steps {
                         echo "Running sloc"
-                        sh "sloccount --duplicates --wide --details . | grep -v -e 'src/vendor' -e 'src/scripts/bootstrap' > ./build/logs/sloccount.sc  2>/dev/null"
+                        #sh "sloccount --duplicates --wide --details . | grep -v -e 'src/vendor' -e 'src/scripts/bootstrap' > ./build/logs/sloccount.sc  2>/dev/null"
                     }
                 }
                 stage ("Copy-Paste Detection"){
