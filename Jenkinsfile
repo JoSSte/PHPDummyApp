@@ -50,7 +50,7 @@ pipeline {
                 stage ("Count LOC"){
                     steps {
                         echo "Running sloc"
-                        #sh "sloccount --duplicates --wide --details . | grep -v -e 'src/vendor' -e 'src/scripts/bootstrap' > ./build/logs/sloccount.sc  2>/dev/null"
+                        //sh "sloccount --duplicates --wide --details . | grep -v -e 'src/vendor' -e 'src/scripts/bootstrap' > ./build/logs/sloccount.sc  2>/dev/null"
                     }
                 }
                 stage ("Copy-Paste Detection"){
@@ -95,7 +95,7 @@ pipeline {
             }
             steps{
                 junit "build/logs/junit.xml"
-                sloccountPublish encoding: '', pattern: ''
+                //sloccountPublish encoding: '', pattern: ''
                 // warnings-ng https://github.com/jenkinsci/warnings-ng-plugin/blob/master/doc/Documentation.md
                 recordIssues enabledForFailure: true, tool: cpd(pattern: 'build/logs/phpcpd.xml')
                 //recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/logs/phpmd_code.xml')
