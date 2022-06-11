@@ -30,7 +30,7 @@ pipeline {
     stages {
         stage ('Staging'){
             steps {
-                githubNotify context: 'staging', description: 'This is an example', status: 'PENDING'
+                githubNotify account: 'JoSSte', credentialsId: 'bc489b1c-c95b-4cb0-99be-beb3bd3067dc', sha: '${env.GIT_COMMIT}', repo: 'PHPDummyApp', context: 'staging', description: 'This is an example', status: 'PENDING'
                 echo "Cleanup build artifacts"
                 dir("${WORKSPACE}/build"){
                     deleteDir()
@@ -124,10 +124,10 @@ pipeline {
             //TODOmove documenting here???
         }
         success {
-            githubNotify context: 'post-build', description: 'Build Succeeded', status: 'SUCCESS'
+            githubNotify account: 'JoSSte', credentialsId: 'bc489b1c-c95b-4cb0-99be-beb3bd3067dc', sha: '${env.GIT_COMMIT}', repo: 'PHPDummyApp', context: 'staging', description: 'Build Succeeded', status: 'SUCCESS'
         }
         failure {
-            githubNotify context: 'post-build', description: 'the build failed', status: 'FAILURE'
+            githubNotify account: 'JoSSte', credentialsId: 'bc489b1c-c95b-4cb0-99be-beb3bd3067dc', sha: '${env.GIT_COMMIT}', repo: 'PHPDummyApp', context: 'staging', description: 'the build failed', status: 'FAILURE'
         }
     }
 }  
