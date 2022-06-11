@@ -1,6 +1,6 @@
 # https://github.com/marketplace/actions/setup-php-action
 on: push
-name: Build Angular
+name: Build PHP application
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,13 +25,13 @@ jobs:
       - name: Test
         run: |
           phpunit --configuration phpunit-quick.xml
-  deploy:
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Push Build to Releases
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "dist/angular-githubaction/*"
-          token: ${{ secrets.TOKEN }}
+  #deploy:
+  #  needs: build
+  #  if: startsWith(github.ref, 'refs/tags/v')
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Push Build to Releases
+  #      uses: ncipollo/release-action@v1
+  #      with:
+  #        artifacts: "dist/angular-githubaction/*"
+  #        token: ${{ secrets.TOKEN }}
