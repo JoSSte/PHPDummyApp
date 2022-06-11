@@ -30,6 +30,7 @@ pipeline {
     stages {
         stage ('Staging'){
             steps {
+                githubNotify context: 'staging', description: 'This is an example', status: 'PENDING'
                 echo "Cleanup build artifacts"
                 dir("${WORKSPACE}/build"){
                     deleteDir()
@@ -121,6 +122,12 @@ pipeline {
         always {
             echo 'Cleaning up workspace'
             //TODOmove documenting here???
+        }
+        success {
+            githubNotify context: 'post-build', description: 'Build Succeeded', status: 'SUCCESS'
+        }
+        failure {
+            githubNotify context: 'post-build', description: 'the build failed', status: 'FAILURE'
         }
     }
 }  
