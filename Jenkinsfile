@@ -85,7 +85,6 @@ pipeline {
                     steps{
                         echo "Running PHPUnit including code coverage"
                         sh "./src/vendor/bin/phpunit --configuration phpunit.xml --coverage-clover build/logs/coverage.xml"
-                        archiveArtifacts artifacts: 'build/coverage-xml/**'
                         archiveArtifacts artifacts: 'build/coverage/**'
                     }
                 }
