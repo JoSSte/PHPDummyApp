@@ -18,9 +18,12 @@ class DummyTest extends TestCase
         $value = 'comment';
         $dc = new dummyclass($value);
         $this->assertTrue($dc instanceof dummyclass);
-        $this->assertEquals($value, $dc->getValue());
+        $this->assertEquals($value, $dc->getValue(), 'Testing simple string');
     }
 
+    /**
+      * testing without paramaters... = more assertions, less testcases (assertions do not count in junit test report)
+      */
     public function testDummyToo()
     {
         $values= ['extra', 'something', 'I', 'cannot', 'think','eggstra'];
@@ -45,11 +48,22 @@ class DummyTest extends TestCase
     /**
       * @dataProvider providerStrings
       */
-    public function testDummyParameterized(string $value)
+    public function testDummyParameterized(
+           $value,
+           string $explain,
+           string $expectedResult = '¤',
+           bool $expectEquality = true)
     {
+        if($expectedResult == '¤'){
+           $expectedResult = $value;
+        }
         $dc = new dummyclass($value);
         $this->assertTrue($dc instanceof dummyclass);
-        $this->assertEquals($value, $dc->getValue());
+        if($expectEquality){
+          $this->assertEquals($value, $dc->getValue(), $explain);
+        }else{
+          $this->assertNotEquals($expectedResult, $dc->getValue(), $explain);
+        }
     }
 
     /**
@@ -57,12 +71,13 @@ class DummyTest extends TestCase
       */
     public function providerStrings() {
       return array(
-          array('extra'),
-          array('something'),
-          array('I'),
-          array('cannot'),
-          array('think'),
-          array('eggstra')
+          array('extra', 'checking string'),
+          array('something', 'checking string'),
+          array('I', 'checking string'),
+          array('cannot', 'checking string'),
+          array('think', 'checking string'),
+          array(false, 'checking boolean', ''),
+          array(0, 'checking number')
          );
     }
 }
