@@ -1,7 +1,7 @@
 {
     "name": "josste/php-dummy-app",
     "description":"Dummy PHP app to experiment with jenkins",
-    "version":"0.5.0",
+    "version":"0.5.2",
     "type": "project",
     "readme": "/readme.md",
     "homepage": "https://github.com/JoSSte/PHPDummyApp",
