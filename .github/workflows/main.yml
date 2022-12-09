@@ -1,14 +1,18 @@
 # https://github.com/marketplace/actions/setup-php-action
 on: push
 name: Test PHP application
+permissions:
+  contents: read
+  issues: read
+  checks: write
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.3','7.4','8.0']
+        php-versions: ['7.4','8.0','8.1','8.3']
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Setup PHP with xdebug & tools
         uses: shivammathur/setup-php@v2
         with:

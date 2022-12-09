@@ -1,3 +1,6 @@
+<a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.4%20to%208.3-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
+
+
 # PHP Dummy App
 This is a dummy php application I use to test CI/CD concepts before letting new ideas loose on my actual projects.
 
