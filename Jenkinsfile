@@ -84,7 +84,8 @@ pipeline {
                     }
                     steps{
                         echo "Running PHPUnit including code coverage"
-                        sh "./src/vendor/bin/phpunit --configuration phpunit.xml" 
+                        sh "./src/vendor/bin/phpunit --configuration phpunit.xml --coverage-clover build/logs/coverage.xml"
+                        archiveArtifacts artifacts: 'build/coverage/**'
                     }
                 }
             }
@@ -100,6 +101,14 @@ pipeline {
                 recordIssues enabledForFailure: true, tool: cpd(pattern: 'build/logs/phpcpd.xml')
                 //recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/logs/phpmd_code.xml')
                 //recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/logs/phpmd_tests.xml')
+                clover(cloverReportDir: 'build/logs', cloverReportFileName: 'coverage.xml',
+                  // optional, default is: method=70, conditional=80, statement=80
+                  healthyTarget: [methodCoverage: 70, conditionalCoverage: 80, statementCoverage: 80],
+                  // optional, default is none
+                  unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
+                  // optional, default is none
+                  failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
+                )
             }
         }
         stage ('Deploy') {
