@@ -59,7 +59,7 @@ class DummyTest extends TestCase
   /**
    * @dataProvider providerStrings
    */
-  public function testDummyParameterized(string|int|bool $value, string $explain, string $expectedResult = '¤', bool $expectEquality = true)
+  public function testDummyParameterized($value, string $explain, string $expectedResult = '¤', bool $expectEquality = true)
   {
     if ($expectedResult == '¤') {
       $expectedResult = $value;
