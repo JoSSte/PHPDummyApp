@@ -40,4 +40,29 @@ class DummyTest extends TestCase
         $this->assertTrue($dc instanceof dummyclass);
         $this->assertEquals($value, $dc->getValue());
     }
+
+
+    /**
+      * @dataProvider providerStrings
+      */
+    public function testDummyParameterized(string $value)
+    {
+        $dc = new dummyclass($value);
+        $this->assertTrue($dc instanceof dummyclass);
+        $this->assertEquals($value, $dc->getValue());
+    }
+
+    /**
+      * @dataProvider providerStrings
+      */
+    public function providerStrings() {
+      return array(
+          array('extra'),
+          array('something'),
+          array('I'),
+          array('cannot'),
+          array('think'),
+          array('eggstra')
+         );
+    }
 }
