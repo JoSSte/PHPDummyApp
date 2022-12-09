@@ -84,7 +84,9 @@ pipeline {
                     }
                     steps{
                         echo "Running PHPUnit including code coverage"
-                        sh "./src/vendor/bin/phpunit --configuration phpunit.xml" 
+                        sh "./src/vendor/bin/phpunit --configuration phpunit.xml --coverage-xml build/coverage-xml"
+                        archiveArtifacts artifacts: 'build/coverage-xml/**'
+                        archiveArtifacts artifacts: 'build/coverage/**'
                     }
                 }
             }
