@@ -13,9 +13,11 @@
     <exclude>
       <directory suffix=".php">src/vendor/</directory>
       <file>src/bootstrap.php</file>
+      <file>src/*.php</file>
     </exclude>
     <report>
-      <html outputDirectory="build/coverage"/>
+      <html outputDirectory="build/coverage" lowUpperBound="50" highLowerBound="90" />
+      <clover outputFile="build/logs/coverage.xml" />
     </report>
   </coverage>
   <testsuites>
