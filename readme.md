@@ -2,7 +2,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/JoSSte/PHPDummyApp) 
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/JoSSte/PHPDummyApp) 
 ![GitHub repo size](https://img.shields.io/github/repo-size/JoSSte/PHPDummyApp)   
-![GitHub commits since tagged version](https://img.shields.io/github/commits-since/JoSSte/PHPDummyApp/master-v0.5.2) 
+![GitHub commits since tagged version](https://img.shields.io/github/commits-since/JoSSte/PHPDummyApp/latest) 
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JoSSte/PHPDummyApp)
 
 # PHP Dummy App
