@@ -7,16 +7,18 @@ permissions:
   checks: write
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.1','8.2']
+        os: [ubuntu-22.04, ubuntu-20.04, ubuntu-latest] 
+        # , windows-latest]
+        php-version: ['8.1','8.2']
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup PHP with xdebug & tools
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php-version }}
           extensions: xdebug
           tools: php-cs-fixer, phpunit, composer:v2, psalm
           coverage: xdebug
@@ -30,11 +32,12 @@ jobs:
         run: |
           phpunit --configuration phpunit.xml
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           files: build/logs/junit.xml
           event_name: ${{ github.event.workflow_run.event }}
+          check_name: Test Result PHP ${{ matrix.php-version }} - ${{ matrix.os }}
       #- name: Publish code coverage
       #  uses: danhunsaker/clover-reporter-action@v0.2.17-clover
       #  with:
@@ -46,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Push Build to Releases
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v2
         with:
           artifacts: "dist/angular-githubaction/*"
           token: ${{ secrets.TOKEN }}
