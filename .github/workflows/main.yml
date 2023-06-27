@@ -10,14 +10,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04, ubuntu-20.04, ubuntu-latest, windows-latest]
-        php-versions: ['8.1','8.2']
+        php-version: ['8.1','8.2']
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup PHP with xdebug & tools
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php-version }}
           extensions: xdebug
           tools: php-cs-fixer, phpunit, composer:v2, psalm
           coverage: xdebug
@@ -36,6 +36,7 @@ jobs:
         with:
           files: build/logs/junit.xml
           event_name: ${{ github.event.workflow_run.event }}
+          check_name: Test Result PHP ${{ matrix.php-version }} - ${{ matrix.os }}
       #- name: Publish code coverage
       #  uses: danhunsaker/clover-reporter-action@v0.2.17-clover
       #  with:
