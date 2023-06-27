@@ -32,6 +32,7 @@ class DummyTest extends TestCase
       $dc = new dummyclass($val);
       $this->assertTrue($dc instanceof dummyclass);
       $this->assertEquals($val, $dc->getValue());
+      $this->assertEquals(0, $dc->getNumber());
     }
   }
 
@@ -41,6 +42,7 @@ class DummyTest extends TestCase
     $dc = new dummyclass($value);
     $this->assertTrue($dc instanceof dummyclass);
     $this->assertEquals($value, $dc->getValue());
+    $this->assertEquals(0, $dc->getNumber());
   }
 
   public function testDummyNumberSet(): void
@@ -52,7 +54,7 @@ class DummyTest extends TestCase
     $this->assertEquals($value, $dc->getValue());
     $dc->setValue($valuetoo);
     $this->assertEquals($valuetoo, $dc->getValue());
-
+    $this->assertEquals(0, $dc->getNumber());
   }
 
 

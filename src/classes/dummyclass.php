@@ -11,9 +11,18 @@ class dummyclass
      */
     private $value;
 
-    public function __construct( string $value = "")
+    /**
+      * number
+      *
+      * @var int
+      */
+    private $number;
+
+
+    public function __construct(string $value = "", int $number = 0)
     {
-        $this->value = $value;
+        $this->value  = $value;
+        $this->number = $number;
     }
 
     public function getValue(): string
@@ -21,8 +30,18 @@ class dummyclass
         return $this->value;
     }
 
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
     public function setValue(string $value): void
     {
         $this->value = $value;
+    }
+
+    public function setNumber(int $number): void
+    {
+         $this->number = $number;
     }
 }
