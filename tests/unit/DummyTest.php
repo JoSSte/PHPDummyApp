@@ -87,7 +87,8 @@ class DummyTest extends TestCase
       array('cannot', 'checking string'),
       array('think', 'checking string'),
       array(false, 'checking boolean', ''),
-      array(0, 'checking number')
+      array(0, 'checking int'),
+      array(1.1, 'checking decimal')
     );
   }
 }
