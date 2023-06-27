@@ -6,12 +6,11 @@ permissions:
   issues: read
   checks: write
 jobs:
-  run_matrix:
+  build:
     strategy:
       matrix:
         os: [ubuntu-22.04, ubuntu-20.04, ubuntu-latest]
         php-versions: ['8.1','8.2']
-  build:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
