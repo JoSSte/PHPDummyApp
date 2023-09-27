@@ -1,0 +1,13 @@
+# https://github.com/jenkinsci/kubernetes-plugin/blob/master/examples/declarative_from_yaml_file/KubernetesPod.yaml
+metadata:
+  labels:
+    some-label: some-label-value
+spec:
+  containers:
+
+  - name: phpbuilder
+    image: jstevnsvig/jenkins-build-slave-php:v8.2
+    command:
+    - sleep
+    args:
+    - 99d
