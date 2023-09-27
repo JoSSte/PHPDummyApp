@@ -17,7 +17,13 @@ node{
 }
 
 pipeline {
-    agent { label 'php8' }
+    agent { 
+        kubernetes {
+            //https://plugins.jenkins.io/kubernetes/#plugin-content-declarative-pipeline
+            yamlFile 'KubernetesPod.yaml'
+            retries 2
+        }
+    }
     environment {
         SOURCE_DIR="${WORKSPACE}/src"
         BACKUP_FNAME="/tmp/BACKUP-${SITE_NAME}-${(new java.text.SimpleDateFormat('yyyy-MM-dd-HHmm')).format((new Date()))}.tar.gz"
