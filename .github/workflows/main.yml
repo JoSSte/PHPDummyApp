@@ -20,7 +20,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: xdebug
-          tools: php-cs-fixer, phpunit, composer:v2, psalm
+          tools: php-cs-fixer, phpunit:9.5, composer:v2, psalm
           coverage: xdebug
         env:
           fail-fast: true
