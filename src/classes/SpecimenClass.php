@@ -2,7 +2,7 @@
 
 namespace dummy;
 
-class dummyclass
+class SpecimenClass
 {
     /**
      * value
