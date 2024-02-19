@@ -16,18 +16,20 @@ node{
     currentBuild.displayName = buildName
 }
 
-pipeline {
-    agent { label 'php8' }
-    environment {
-        SOURCE_DIR="${WORKSPACE}/src"
-        BACKUP_FNAME="/tmp/BACKUP-${SITE_NAME}-${(new java.text.SimpleDateFormat('yyyy-MM-dd-HHmm')).format((new Date()))}.tar.gz"
-    }
-    triggers {
-        bitbucketPush()
-        pollSCM('') // empty cron expression string
-    }
-    
-    stages {
+podTemplate(containers: [
+    containerTemplate(name: 'php8builder', image: 'jstevnsvig/jenkins-build-slave-php:v8.2', command: 'sleep', args: '99d')
+  ]) {
+
+        node(POD_LABEL) {
+            container('php8builder') {
+        environment {
+            SOURCE_DIR="${WORKSPACE}/src"
+            BACKUP_FNAME="/tmp/BACKUP-${SITE_NAME}-${(new java.text.SimpleDateFormat('yyyy-MM-dd-HHmm')).format((new Date()))}.tar.gz"
+        }
+        triggers {
+            bitbucketPush()
+            pollSCM('') // empty cron expression string
+        }
         stage ('Staging'){
             steps {
                 echo "Cleanup build artifacts"
@@ -137,5 +139,6 @@ pipeline {
         failure {
             echo "failure"
         }
+    }
     }
 }  

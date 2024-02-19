@@ -16,6 +16,8 @@ This is a dummy php application I use to test CI/CD concepts before letting new 
 
 ## The CI/CD workflows
 
+![CI/CD setup](phpdummyapp_setup.png)
+
 ### Jenkins pipeline strategy
 * `master` & all `feature/*` and `hotfix/*` branches are tested and documented, but not deployed anywhere
 * All tags in the format `destination-v0.0` are deployed as long as `destination` is a valid target environment

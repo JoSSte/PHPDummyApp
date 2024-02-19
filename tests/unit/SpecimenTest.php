@@ -1,10 +1,10 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use dummy\dummyclass;
+use dummy\SpecimenClass;
 
 /**
- * Dummyclass testcases
+ * SpecimenClass testcases
  *
  * @author JoSSte
  */
@@ -16,8 +16,8 @@ class DummyTest extends TestCase
   public function testDummyBasic(): void
   {
     $value = 'comment';
-    $dc = new dummyclass($value);
-    $this->assertTrue($dc instanceof dummyclass);
+    $dc = new SpecimenClass($value);
+    $this->assertTrue($dc instanceof SpecimenClass);
     $this->assertEquals($value, $dc->getValue(), 'Testing simple string');
   }
 
@@ -27,10 +27,9 @@ class DummyTest extends TestCase
   public function testDummyToo(): void
   {
     $values = ['extra', 'something', 'I', 'cannot', 'think', 'eggstra'];
-    $counter = 0;
     foreach ($values as $val) {
-      $dc = new dummyclass($val);
-      $this->assertTrue($dc instanceof dummyclass);
+      $dc = new SpecimenClass($val);
+      $this->assertTrue($dc instanceof SpecimenClass);
       $this->assertEquals($val, $dc->getValue());
       $this->assertEquals(0, $dc->getNumber());
     }
@@ -39,8 +38,8 @@ class DummyTest extends TestCase
   public function testDummyNumber(): void
   {
     $value = 12673;
-    $dc = new dummyclass($value);
-    $this->assertTrue($dc instanceof dummyclass);
+    $dc = new SpecimenClass($value);
+    $this->assertTrue($dc instanceof SpecimenClass);
     $this->assertEquals($value, $dc->getValue());
     $this->assertEquals(0, $dc->getNumber());
   }
@@ -49,8 +48,8 @@ class DummyTest extends TestCase
   {
     $value = 12673;
     $valuetoo = 'hello';
-    $dc = new dummyclass($value);
-    $this->assertTrue($dc instanceof dummyclass);
+    $dc = new SpecimenClass($value);
+    $this->assertTrue($dc instanceof SpecimenClass);
     $this->assertEquals($value, $dc->getValue());
     $dc->setValue($valuetoo);
     $this->assertEquals($valuetoo, $dc->getValue());
@@ -66,8 +65,8 @@ class DummyTest extends TestCase
     if ($expectedResult == '¤') {
       $expectedResult = $value;
     }
-    $dc = new dummyclass($value);
-    $this->assertTrue($dc instanceof dummyclass);
+    $dc = new SpecimenClass($value);
+    $this->assertTrue($dc instanceof SpecimenClass);
     if ($expectEquality) {
       $this->assertEquals($value, $dc->getValue(), $explain);
     } else {
